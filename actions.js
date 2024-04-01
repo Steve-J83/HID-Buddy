@@ -23,6 +23,7 @@ module.exports = function (self) {
 					label: 'Standard Keys',
 					id: 'stdKeys',
 					choices: STANDARD_KEYS,
+					default: '0x00',
 				},
 			],
 
@@ -53,7 +54,10 @@ module.exports = function (self) {
 					if (err) throw err;
 				  });
 			    //Release Key
-				
+				fs.writeFile(file, release, (err) => {
+					if (err) throw err;
+				  });
+				//Second time to avoid keys sticking
 				fs.writeFile(file, release, (err) => {
 					if (err) throw err;
 				  });
@@ -79,6 +83,7 @@ const MODIFIER_KEYS = [
 
 const STANDARD_KEYS = [
 	//Letter Keys
+	{ label: 'None', id: 0x00 },
 	{ label: 'A or a', id: 0x04 },
 	{ label: 'B or b', id: 0x05 },
 	{ label: 'C or c', id: 0x06 },
@@ -118,7 +123,8 @@ const STANDARD_KEYS = [
 	{ label: '8 or *', id: 0x25 },
 	{ label: '9 or (', id: 0x26 },
 	{ label: '0 or )', id: 0x27 },
-
+	
+	// Punctuation and special keys 
 	{ label: 'Return (ENTER)', id: 0x28 },
 	{ label: 'Escape', id: 0x28 },
 	{ label: 'Delete (Backspace)', id: 0x2a },
@@ -138,8 +144,28 @@ const STANDARD_KEYS = [
 	{ label: '/ or ?', id: 0x38 },
 	{ label: 'Caps Lock', id: 0x39 },
 
-//Function keys
+	//Function keys
+	{ label: '/ or ?', id: 0x38 },
+
+// 0x3a  F1
+// 0x3b  F2
+// 0x3c  F3
+// 0x3d  F4
+// 0x3e  F5
+// 0x3f  F6
+// 0x40  F7
+// 0x41  F8
+// 0x42  F9
+// 0x43  F10
+// 0x44  F11
+// 0x45  F12
+
 //Navigation keys
+
 //Numeric keypad
+
+//Media keys?
+
+
 ]
 

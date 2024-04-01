@@ -60,13 +60,14 @@ module.exports = function (self) {
 					if (err) throw err;
 				});
 
-				await sleep(1);
+				await sleep(2);
 				//Release Key
 				fs.writeFile(file, release, (err) => {
 					console.log("release")
 					if (err) throw err;
 				});
-				//Second time to avoid keys sticking
+				await sleep(2);
+				
 			},
 		},
 	})

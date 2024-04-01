@@ -6,8 +6,7 @@ echo "dwc2" | sudo tee -a /etc/modules
 echo "libcomposite" | sudo tee -a /etc/modules
 
 cd /usr/bin/
-git clone https://raw.githubusercontent.com/Steve-J83/companion-module-hid-buddy/main/scripts/hid_buddy
-
+wget https://raw.githubusercontent.com/Steve-J83/companion-module-hid-buddy/main/scripts/hid_buddy
 chmod +x /usr/bin/hid_buddy
 
 sed -i "/^exit 0$/i\/usr/bin/hid_buddy" /etc/rc.local

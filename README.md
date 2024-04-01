@@ -1,3 +1,3 @@
-# companion-module-HID-Buddy
+# companion-module-hid-buddy
 
 See [HELP.md](./companion/HELP.md) and [LICENSE](./LICENSE)

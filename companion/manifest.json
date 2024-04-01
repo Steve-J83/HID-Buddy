@@ -1,0 +1,26 @@
+{
+	"id": "buddy-hid",
+	"name": "Buddy HID",
+	"shortname": "HID",
+	"description": "HID for the Pi",
+	"version": "0.0.0",
+	"license": "MIT",
+	"repository": "git+https://github.com/Steve-J83/buddy-hid.git",
+	"bugs": "https://github.com/Steve-J83/buddy-hid/issues",
+	"maintainers": [
+		{
+			"name": "Steven Johnson",
+			"email": "stevenjohnson.video@gmail.com"
+		}
+	],
+	"runtime": {
+		"type": "node18",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../main.js"
+	},
+	"legacyIds": [],
+	"manufacturer": "Raspberry Pi",
+	"products": ["HID"],
+	"keywords": []
+}

@@ -1,7 +1,7 @@
 {
-	"id": "HID-Buddy",
-	"name": "HID-Buddy",
-	"shortname": "HID-Buddy",
+	"id": "hid-buddy",
+	"name": "hid-buddy",
+	"shortname": "hid",
 	"description": "HID for the Pi",
 	"version": "0.0.0",
 	"license": "MIT",
@@ -22,5 +22,5 @@
 	"legacyIds": [],
 	"manufacturer": "Raspberry Pi",
 	"products": ["HID Buddy"],
-	"keywords": []
+	"keywords": ["Pi", "HID", "Utility"]
 }

@@ -1,12 +1,12 @@
 {
-	"id": "buddy-hid",
-	"name": "Buddy HID",
-	"shortname": "HID",
+	"id": "HID-Buddy",
+	"name": "HID-Buddy",
+	"shortname": "HID-Buddy",
 	"description": "HID for the Pi",
 	"version": "0.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/Steve-J83/buddy-hid.git",
-	"bugs": "https://github.com/Steve-J83/buddy-hid/issues",
+	"repository": "git+https://github.com/Steve-J83/HID-Buddy",
+	"bugs": "https://github.com/Steve-J83/HID-Buddy/issues",
 	"maintainers": [
 		{
 			"name": "Steven Johnson",

@@ -2,6 +2,12 @@ const fs = require('fs');
 var file = '/dev/hidg0'
 const release = Buffer.from([0, 0, 0, 0, 0, 0, 0, 0]);
 
+async function sleep(ms) {
+	return new Promise(resolve => {
+	  setTimeout(resolve, ms);
+	});
+  }
+
 module.exports = function (self) {
 	self.setActionDefinitions({
 		sample_action: {
@@ -39,28 +45,28 @@ module.exports = function (self) {
 					i++
 				}
 				//pack single array 
-				let arr = [mod,0,];
+				let arr = [mod, 0,];
 				arr = arr.concat(event.options.stdKeys);
-				
+
 				//pad array to 8 bytes and load buffer
-				while (arr.length<8){
+				while (arr.length < 8) {
 					arr.push(0)
 				}
 				var data = Buffer.from(arr);
 				console.log(data)
 
-				//Write keys to port
+				//Write Key Buffer to port
 				fs.writeFile(file, data, (err) => {
 					if (err) throw err;
-				  });
-			    //Release Key
+				});
+
+				await sleep(1);
+				//Release Key
 				fs.writeFile(file, release, (err) => {
+					console.log("release")
 					if (err) throw err;
-				  });
+				});
 				//Second time to avoid keys sticking
-				fs.writeFile(file, release, (err) => {
-					if (err) throw err;
-				  });
 			},
 		},
 	})
@@ -123,7 +129,7 @@ const STANDARD_KEYS = [
 	{ label: '8 or *', id: 0x25 },
 	{ label: '9 or (', id: 0x26 },
 	{ label: '0 or )', id: 0x27 },
-	
+
 	// Punctuation and special keys 
 	{ label: 'Return (ENTER)', id: 0x28 },
 	{ label: 'Escape', id: 0x28 },
@@ -147,24 +153,24 @@ const STANDARD_KEYS = [
 	//Function keys
 	{ label: '/ or ?', id: 0x38 },
 
-// 0x3a  F1
-// 0x3b  F2
-// 0x3c  F3
-// 0x3d  F4
-// 0x3e  F5
-// 0x3f  F6
-// 0x40  F7
-// 0x41  F8
-// 0x42  F9
-// 0x43  F10
-// 0x44  F11
-// 0x45  F12
+	// 0x3a  F1
+	// 0x3b  F2
+	// 0x3c  F3
+	// 0x3d  F4
+	// 0x3e  F5
+	// 0x3f  F6
+	// 0x40  F7
+	// 0x41  F8
+	// 0x42  F9
+	// 0x43  F10
+	// 0x44  F11
+	// 0x45  F12
 
-//Navigation keys
+	//Navigation keys
 
-//Numeric keypad
+	//Numeric keypad
 
-//Media keys?
+	//Media keys?
 
 
 ]

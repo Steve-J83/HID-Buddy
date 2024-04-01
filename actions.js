@@ -62,6 +62,7 @@ module.exports = function (self) {
 	})
 }
 
+//Modifiers
 const MODIFIER_KEYS = [
 	{ label: 'None', id: 0x00 },
 	{ label: 'Left Control', id: 0x01 },
@@ -77,6 +78,7 @@ const MODIFIER_KEYS = [
 ]
 
 const STANDARD_KEYS = [
+	//Letter Keys
 	{ label: 'A or a', id: 0x04 },
 	{ label: 'B or b', id: 0x05 },
 	{ label: 'C or c', id: 0x06 },
@@ -104,6 +106,7 @@ const STANDARD_KEYS = [
 	{ label: 'Y or y', id: 0x1c },
 	{ label: 'Z or Z', id: 0x1d },
 
+	//Number Keys
 	{ label: '1 or !', id: 0x1e },
 	{ label: '2 or @ (mac)', id: 0x1f },
 	{ label: '2 or " (pc)', id: 0x1f },
@@ -116,11 +119,27 @@ const STANDARD_KEYS = [
 	{ label: '9 or (', id: 0x26 },
 	{ label: '0 or )', id: 0x27 },
 
+	{ label: 'Return (ENTER)', id: 0x28 },
+	{ label: 'Escape', id: 0x28 },
+	{ label: 'Delete (Backspace)', id: 0x2a },
+	{ label: 'Tab', id: 0x2b },
+	{ label: 'Spacebar', id: 0x2c },
+	{ label: '- or _', id: 0x2d },
+	{ label: '= or +', id: 0x2e },
+	{ label: '[ or {', id: 0x2f },
+	{ label: '] or }', id: 0x30 },
+	{ label: '\ or |', id: 0x31 },
+	{ label: '# or ~', id: 0x32 },
+	{ label: '; or :', id: 0x33 },
+	{ label: "' " + "or" + ' "', id: 0x34 },
+	{ label: '` or ~', id: 0x35 },
+	{ label: ', or <', id: 0x36 },
+	{ label: '. or >', id: 0x37 },
+	{ label: '/ or ?', id: 0x38 },
+	{ label: 'Caps Lock', id: 0x39 },
 
-//
-	{ label: 'Enter or Return', id: 0x28 },
-	{ label: 'Space bar', id: 0x2c },
-	{ label: 'Backspace', id: 0x2a },
-
+//Function keys
+//Navigation keys
+//Numeric keypad
 ]
 

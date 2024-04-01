@@ -1,8 +1,11 @@
+apt-get update
+apt-get full-upgrade
+apt-get install rpi-eeprom
+rpi-eeprom-update
+rpi-eeprom-update -a 
 
 echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
-
 echo "dwc2" | sudo tee -a /etc/modules
-
 echo "libcomposite" | sudo tee -a /etc/modules
 
 cd /usr/bin/
@@ -11,4 +14,25 @@ chmod +x /usr/bin/hid_buddy
 
 sed -i "/^exit 0$/i\/usr/bin/hid_buddy" /etc/rc.local
 
-echo -n "Done!"
+read -p 'Do you want to underclock (Pi4 only)? (y/n)? ' answer
+case ${answer:0:1} in
+    y|Y )
+        echo Yes
+        echo "arm_freq=1000 " | sudo tee -a /boot/config.txt
+        echo "gpu_freq=400 " | sudo tee -a //boot/config.txt
+        echo "arm_boost=0  " | sudo tee -a /boot/config.txt
+    ;;
+    * )
+        echo No
+    ;;
+esac
+
+echo "Done!"
+sleep .5 
+echo "Rebooting"
+for i in $(seq 1 5);
+do
+    sleep 1
+    echo .
+done
+reboot

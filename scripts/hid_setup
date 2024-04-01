@@ -1,0 +1,12 @@
+
+echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
+echo "dwc2" | sudo tee -a /etc/modules
+sudo echo "libcomposite" | sudo tee -a /etc/modules
+
+cd /usr/bin/
+git clone https://raw.githubusercontent.com/<username>/<project>/<branch>/<path>/<file> 
+
+sudo chmod +x /usr/bin/hid_buddy
+
+sed -i "/^exit 0$/i\/usr/bin/hid_buddy" /etc/rc.local
+

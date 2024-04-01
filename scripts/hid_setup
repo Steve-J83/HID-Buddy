@@ -1,38 +1,61 @@
-apt-get update
-apt-get full-upgrade
-apt-get install rpi-eeprom
+#update distro
+sudo apt-get update
+sudo apt-get full-upgrade
+
+#update eeprom
+sudo apt-get install rpi-eeprom
 rpi-eeprom-update
 rpi-eeprom-update -a 
 
+#Apply overlays for Gadget mode
 echo "dtoverlay=dwc2" | sudo tee -a /boot/config.txt
 echo "dwc2" | sudo tee -a /etc/modules
 echo "libcomposite" | sudo tee -a /etc/modules
 
+#Get HID script
 cd /usr/bin/
-wget https://raw.githubusercontent.com/Steve-J83/companion-module-hid-buddy/main/scripts/hid_buddy
-chmod +x /usr/bin/hid_buddy
+sudo wget https://raw.githubusercontent.com/Steve-J83/companion-module-hid-buddy/main/scripts/hid_buddy
+sudo chmod +x /usr/bin/hid_buddy
+cd 
 
-sed -i "/^exit 0$/i\/usr/bin/hid_buddy" /etc/rc.local
+#Setup service for HID
+sudo sed -i "/^exit 0$/i\/usr/bin/hid_buddy" /etc/rc.local
 
-read -p 'Do you want to underclock (Pi4 only)? (y/n)? ' answer
-case ${answer:0:1} in
-    y|Y )
-        echo Yes
-        echo "arm_freq=1000 " | sudo tee -a /boot/config.txt
-        echo "gpu_freq=400 " | sudo tee -a //boot/config.txt
-        echo "arm_boost=0  " | sudo tee -a /boot/config.txt
-    ;;
-    * )
-        echo No
-    ;;
-esac
+#Apply underclocking for Pi4
+echo "arm_freq=1000 " | sudo tee -a /boot/config.txt
+echo "gpu_freq=400 " | sudo tee -a //boot/config.txt
+echo "arm_boost=0  " | sudo tee -a /boot/config.txt
 
-echo "Done!"
-sleep .5 
-echo "Rebooting"
-for i in $(seq 1 5);
-do
-    sleep 1
-    echo .
-done
-reboot
+#for vscode server 
+echo "fs.inotify.max_user_watches=524288" | sudo tee -a /etc/sysctl.conf
+
+#Install fnm
+curl -fsSL https://fnm.vercel.app/install |bash
+
+#Open a new terminal window!!!
+source /home/pi/.bashrc
+
+#Setup nodejs 
+fnm install 18
+fnm use 18
+fnm default 18
+corepack enable
+
+#Set ownership 
+sudo chown pi:pi -R /opt
+
+#Clone and install dependencies for HID buddy
+cd /opt/companion-module-dev/
+git clone https://github.com/Steve-J83/companion-module-hid-buddy
+cd companion-module-hid-buddy
+yarn 
+cd - 
+
+#Clone and install dependencies for Stats buddy
+git clone https://github.com/Steve-J83/companion-module-stats-buddy
+cd companion-module-stats-buddy
+yarn
+cd
+
+#reboot
+sudo reboot
